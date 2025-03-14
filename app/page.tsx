@@ -447,12 +447,12 @@ export default function Home() {
                 </p>
                 <div className="space-y-2">
                   <div>
-                    <Link href="/terms" className="text-foreground/60 hover:text-primary transition-colors">
+                    <Link href="/legal/terms" className="text-foreground/60 hover:text-primary transition-colors">
                       Terms and Conditions
                     </Link>
                   </div>
                   <div>
-                    <Link href="/privacy" className="text-foreground/60 hover:text-primary transition-colors">
+                    <Link href="/legal/privacy" className="text-foreground/60 hover:text-primary transition-colors">
                       Privacy Policy
                     </Link>
                   </div>
@@ -463,30 +463,30 @@ export default function Home() {
                 <h3 className="text-lg font-bold text-foreground mb-4">Quick Links</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="#about" className="text-foreground/60 hover:text-primary transition-colors nav-link">
+                    <Link href="/#about" className="text-foreground/60 hover:text-primary transition-colors nav-link">
                       About Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="#services" className="text-foreground/60 hover:text-primary transition-colors nav-link">
+                    <Link href="/#services" className="text-foreground/60 hover:text-primary transition-colors nav-link">
                       Services
                     </Link>
                   </li>
                   <li>
-                    <Link href="#benefits" className="text-foreground/60 hover:text-primary transition-colors nav-link">
+                    <Link href="/#benefits" className="text-foreground/60 hover:text-primary transition-colors nav-link">
                       Benefits
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="#tech-stack"
+                      href="/#tech-stack"
                       className="text-foreground/60 hover:text-primary transition-colors nav-link"
                     >
                       Technology Stack
                     </Link>
                   </li>
                   <li>
-                    <Link href="#contact" className="text-foreground/60 hover:text-primary transition-colors nav-link">
+                    <Link href="/#contact" className="text-foreground/60 hover:text-primary transition-colors nav-link">
                       Contact Us
                     </Link>
                   </li>
@@ -498,24 +498,24 @@ export default function Home() {
                 <ul className="space-y-2">
                   <li>
                     <Link
-                      href="#airbnb-bot"
+                      href="/#airbnb-bot"
                       className="text-foreground/60 hover:text-primary transition-colors nav-link"
                     >
                       AirbnbBot
                     </Link>
                   </li>
                   <li>
-                    <Link href="#" className="text-foreground/60 hover:text-primary transition-colors nav-link">
+                    <Link href="/#services" className="text-foreground/60 hover:text-primary transition-colors nav-link">
                       Workflow Automation
                     </Link>
                   </li>
                   <li>
-                    <Link href="#" className="text-foreground/60 hover:text-primary transition-colors nav-link">
+                    <Link href="/#services" className="text-foreground/60 hover:text-primary transition-colors nav-link">
                       Data Analytics
                     </Link>
                   </li>
                   <li>
-                    <Link href="#" className="text-foreground/60 hover:text-primary transition-colors nav-link">
+                    <Link href="/#services" className="text-foreground/60 hover:text-primary transition-colors nav-link">
                       Custom Solutions
                     </Link>
                   </li>
@@ -528,8 +528,16 @@ export default function Home() {
                   <p>Woolwich House</p>
                   <p>147 High Street</p>
                   <p>London, SE18 6BY</p>
-                  <p>info@audemation.com</p>
-                  <p>+44 (0)7763 572224</p>
+                  <p>
+                    <a href="mailto:info@audemation.com" className="hover:text-primary transition-colors">
+                      info@audemation.com
+                    </a>
+                  </p>
+                  <p>
+                    <a href="tel:+447763572224" className="hover:text-primary transition-colors">
+                      +44 (0)7763 572224
+                    </a>
+                  </p>
                 </address>
               </div>
             </div>

@@ -59,12 +59,12 @@ export default function MobileMenuPortal({ isOpen, onClose }: MobileMenuPortalPr
 
       <nav className="mt-12 flex flex-col items-center gap-6">
         {[
-          { href: "#about", label: "About" },
-          { href: "#services", label: "Services" },
-          { href: "#benefits", label: "Benefits" },
-          { href: "#tech-stack", label: "Technology" },
-          { href: "#airbnb-bot", label: "AirbnbBot" },
-          { href: "#contact", label: "Contact" },
+          { href: "/#about", label: "About" },
+          { href: "/#services", label: "Services" },
+          { href: "/#benefits", label: "Benefits" },
+          { href: "/#tech-stack", label: "Technology" },
+          { href: "/#airbnb-bot", label: "AirbnbBot" },
+          { href: "/#contact", label: "Contact" },
         ].map((item, index) => (
           <Link
             key={item.href}

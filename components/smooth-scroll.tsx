@@ -10,11 +10,12 @@ export default function SmoothScroll() {
 
       if (!anchor) return
 
-      // Check if the link is an anchor link
+      // Check if the link is an anchor link (either #section or /#section format)
       const href = anchor.getAttribute("href")
-      if (!href || !href.startsWith("#")) return
+      if (!href || (!href.startsWith("#") && !href.startsWith("/#"))) return
 
-      const targetId = href.substring(1)
+      // Extract the target ID, handling both formats
+      const targetId = href.startsWith("/#") ? href.substring(2) : href.substring(1)
       const targetElement = document.getElementById(targetId)
 
       if (targetElement) {
@@ -28,6 +29,11 @@ export default function SmoothScroll() {
           top: targetElement.offsetTop - headerHeight - 20, // Extra padding
           behavior: "smooth",
         })
+
+        // Update URL without reloading the page
+        if (history && history.pushState) {
+          history.pushState(null, "", href);
+        }
       }
     }
 

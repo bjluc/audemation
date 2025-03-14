@@ -78,51 +78,51 @@ export default function RootLayout({
           <AnimatedGradientBackground />
           <FloatingShapes />
           <div className="bg-grid">
-            <header className="sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-white/10">
+            <header className="sticky top-0 z-[100] backdrop-blur-md bg-background/70 border-b border-white/10">
               <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
-                  <Link href="/" className="text-3xl font-bold text-gradient" aria-label="Audemation - Home">
+                  <Link href="/" className="text-3xl font-bold text-gradient relative z-10" aria-label="Audemation - Home">
                     Audemation
                   </Link>
 
                   {/* Desktop navigation */}
-                  <nav className="hidden md:flex space-x-8" aria-label="Main Navigation">
-                    <Link href="#home" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
+                  <nav className="hidden md:flex space-x-8 relative z-10" aria-label="Main Navigation">
+                    <Link href="/#home" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
                       Home
                     </Link>
-                    <Link href="#about" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
+                    <Link href="/#about" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
                       About
                     </Link>
                     <Link
-                      href="#services"
+                      href="/#services"
                       className="text-foreground/80 hover-gradient-text transition-colors nav-link"
                     >
                       Services
                     </Link>
                     <Link
-                      href="#benefits"
+                      href="/#benefits"
                       className="text-foreground/80 hover-gradient-text transition-colors nav-link"
                     >
                       Benefits
                     </Link>
                     <Link
-                      href="#tech-stack"
+                      href="/#tech-stack"
                       className="text-foreground/80 hover-gradient-text transition-colors nav-link"
                     >
                       Technology
                     </Link>
                     <Link
-                      href="#airbnb-bot"
+                      href="/#airbnb-bot"
                       className="text-foreground/80 hover-gradient-text transition-colors nav-link"
                     >
                       AirbnbBot
                     </Link>
-                    <Link href="#contact" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
+                    <Link href="/#contact" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
                       Contact
                     </Link>
                   </nav>
 
-                  <div className="hidden md:block">
+                  <div className="hidden md:block relative z-10">
                     <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
                   </div>
 
