@@ -37,11 +37,11 @@ export default function Home() {
             </div>
             <div className="w-full md:w-1/2 relative mt-8 md:mt-0 mx-auto">
               <div className="max-w-md mx-auto relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl blur-md opacity-20 animate-pulse-slow"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl blur-md opacity-20"></div>
                 <div className="relative glass-card rounded-2xl p-4 md:p-6 animate-float overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/30 to-indigo-900/30 mix-blend-multiply z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Man_with_chatbot-pt6EMb47mMizuQ6cDglrS3PVicH9dE.jpeg"
+                    src="/images/man-with-chatbot.jpeg"
                     alt="Professional property manager using Audemation's AI chatbot interface to automate guest communications and property management tasks"
                     width={800}
                     height={600}
@@ -79,7 +79,7 @@ export default function Home() {
                 <div className="relative glass-card rounded-2xl p-4 md:p-6 overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/30 to-indigo-900/30 mix-blend-multiply z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/whoweare-NgVFxAad4H2VIaTVA194jG0bqu6tCZ.jpeg"
+                    src="/images/who-we-are.jpeg"
                     alt="Audemation's London office showcasing our team of automation specialists working on property management solutions"
                     width={800}
                     height={600}
@@ -195,19 +195,38 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center gap-8 md:gap-12">
-            <div className="relative mx-auto max-w-lg">
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl blur-md opacity-20 animate-pulse-slow"></div>
-                <div className="relative glass-card rounded-2xl p-4 md:p-6 animate-float overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/20 to-indigo-900/20 mix-blend-multiply z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/whatsapptelegram.jpeg-fyCkOSzuzbbCVW2wPiNVhNRJBBEbLU.png"
-                    alt="AirbnbBot interface showing WhatsApp and Telegram messaging platforms with automated guest communications for UK property managers"
-                    width={800}
-                    height={600}
-                    className="object-contain rounded-lg"
-                    priority
-                  />
+            <div className="relative mx-auto max-w-4xl w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Telegram Chatbot Image */}
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl blur-md opacity-20 animate-pulse-slow"></div>
+                  <div className="relative glass-card rounded-2xl p-4 md:p-6 animate-float overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/20 to-indigo-900/20 mix-blend-multiply z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
+                    <Image
+                      src="/images/Telegram-chatbbot.webp"
+                      alt="Telegram chatbot interface for AirbnbBot showing automated messaging capabilities"
+                      width={400}
+                      height={400}
+                      className="object-contain rounded-lg"
+                      priority
+                    />
+                  </div>
+                </div>
+                
+                {/* WhatsApp Chatbot Image */}
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl blur-md opacity-20 animate-pulse-slow"></div>
+                  <div className="relative glass-card rounded-2xl p-4 md:p-6 animate-float overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/20 to-indigo-900/20 mix-blend-multiply z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
+                    <Image
+                      src="/images/WhatsApp-chatbot.webp"
+                      alt="WhatsApp chatbot interface for AirbnbBot showing automated guest communications"
+                      width={400}
+                      height={400}
+                      className="object-contain rounded-lg"
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
             </div>

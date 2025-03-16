@@ -91,9 +91,6 @@ export async function sendEmail({
     const fromName = typeof from === "string" ? "Audemation" : from.name
     const formattedFrom = fromName ? `${fromName} <${fromEmail}>` : fromEmail
 
-    console.log(`Sending email to: ${formattedTo}`)
-    console.log(`From: ${formattedFrom}`)
-
     // Check for required environment variables
     if (
       !process.env.GOOGLE_CLIENT_ID ||
@@ -147,7 +144,6 @@ export async function sendEmail({
       html,
     })
 
-    console.log("Email sent successfully:", info.messageId)
     return { success: true, messageId: info.messageId }
   } catch (error: any) {
     console.error("Error sending email:", error)

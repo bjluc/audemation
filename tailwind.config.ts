@@ -107,7 +107,6 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "hero-pattern": "url('/placeholder.svg?height=500&width=500')",
       },
     },
   },

@@ -46,7 +46,7 @@ export default function TechStack() {
     },
     {
       name: "Docker",
-      description: "For containerization and deployment.",
+      description: "For containerisation and deployment.",
       icon: <Box className="h-6 w-6 text-primary" />,
     },
   ]
