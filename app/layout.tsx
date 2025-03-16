@@ -11,6 +11,7 @@ import MobileNav from "@/components/mobile-nav"
 import SmoothScroll from "@/components/smooth-scroll"
 import Script from "next/script"
 import { Toaster } from "@/components/ui/toaster"
+import ReCaptchaProvider from "@/components/recaptcha-provider"
 
 const lora = Lora({
   subsets: ["latin"],
@@ -74,67 +75,69 @@ export default function RootLayout({
     <html lang="en-GB" className="scroll-smooth">
       <body className={`${lora.className} bg-background`}>
         <ThemeProvider attribute="class" defaultTheme="dark">
-          <SmoothScroll />
-          <AnimatedGradientBackground />
-          <FloatingShapes />
-          <div className="bg-grid">
-            <header className="sticky top-0 z-[100] backdrop-blur-md bg-background/70 border-b border-white/10">
-              <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-16">
-                  <Link href="/" className="text-3xl font-bold text-gradient relative z-10" aria-label="Audemation - Home">
-                    Audemation
-                  </Link>
+          <ReCaptchaProvider>
+            <SmoothScroll />
+            <AnimatedGradientBackground />
+            <FloatingShapes />
+            <div className="bg-grid">
+              <header className="sticky top-0 z-[100] backdrop-blur-md bg-background/70 border-b border-white/10">
+                <div className="container mx-auto px-4">
+                  <div className="flex items-center justify-between h-16">
+                    <Link href="/" className="text-3xl font-bold text-gradient relative z-10" aria-label="Audemation - Home">
+                      Audemation
+                    </Link>
 
-                  {/* Desktop navigation */}
-                  <nav className="hidden md:flex space-x-8 relative z-10" aria-label="Main Navigation">
-                    <Link href="/#home" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
-                      Home
-                    </Link>
-                    <Link href="/#about" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
-                      About
-                    </Link>
-                    <Link
-                      href="/#services"
-                      className="text-foreground/80 hover-gradient-text transition-colors nav-link"
-                    >
-                      Services
-                    </Link>
-                    <Link
-                      href="/#benefits"
-                      className="text-foreground/80 hover-gradient-text transition-colors nav-link"
-                    >
-                      Benefits
-                    </Link>
-                    <Link
-                      href="/#tech-stack"
-                      className="text-foreground/80 hover-gradient-text transition-colors nav-link"
-                    >
-                      Technology
-                    </Link>
-                    <Link
-                      href="/#airbnb-bot"
-                      className="text-foreground/80 hover-gradient-text transition-colors nav-link"
-                    >
-                      AirbnbBot
-                    </Link>
-                    <Link href="/#contact" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
-                      Contact
-                    </Link>
-                  </nav>
+                    {/* Desktop navigation */}
+                    <nav className="hidden md:flex space-x-8 relative z-10" aria-label="Main Navigation">
+                      <Link href="/#home" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
+                        Home
+                      </Link>
+                      <Link href="/#about" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
+                        About
+                      </Link>
+                      <Link
+                        href="/#services"
+                        className="text-foreground/80 hover-gradient-text transition-colors nav-link"
+                      >
+                        Services
+                      </Link>
+                      <Link
+                        href="/#benefits"
+                        className="text-foreground/80 hover-gradient-text transition-colors nav-link"
+                      >
+                        Benefits
+                      </Link>
+                      <Link
+                        href="/#tech-stack"
+                        className="text-foreground/80 hover-gradient-text transition-colors nav-link"
+                      >
+                        Technology
+                      </Link>
+                      <Link
+                        href="/#airbnb-bot"
+                        className="text-foreground/80 hover-gradient-text transition-colors nav-link"
+                      >
+                        AirbnbBot
+                      </Link>
+                      <Link href="/#contact" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
+                        Contact
+                      </Link>
+                    </nav>
 
-                  <div className="hidden md:block relative z-10">
-                    <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
+                    <div className="hidden md:block relative z-10">
+                      <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
+                    </div>
+
+                    {/* Mobile menu button */}
+                    <MobileNav />
                   </div>
-
-                  {/* Mobile menu button */}
-                  <MobileNav />
                 </div>
-              </div>
-            </header>
+              </header>
 
-            <main>{children}</main>
-          </div>
-          <Toaster />
+              <main>{children}</main>
+            </div>
+            <Toaster />
+          </ReCaptchaProvider>
         </ThemeProvider>
 
         {/* Schema.org structured data */}

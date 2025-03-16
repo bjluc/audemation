@@ -10,6 +10,7 @@ const ContactFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
   subject: z.string().min(3, { message: "Subject must be at least 3 characters" }),
   message: z.string().min(10, { message: "Message must be at least 10 characters" }),
+  recaptchaToken: z.string().optional(),
 })
 
 export type ContactFormState = {
@@ -24,6 +25,40 @@ export type ContactFormState = {
   message?: string
 }
 
+/**
+ * Verifies a reCAPTCHA token with Google's API
+ * @param token The reCAPTCHA token to verify
+ * @returns True if verification is successful, false otherwise
+ */
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  if (!token) return false;
+  
+  try {
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+    
+    if (!secretKey) {
+      console.warn("reCAPTCHA secret key not configured");
+      return true; // Allow submission if not configured
+    }
+    
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${secretKey}&response=${token}`,
+    });
+    
+    const data = await response.json();
+    
+    // Check if the score is above threshold (0.5 is a good balance)
+    return data.success && data.score >= 0.5;
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    return false;
+  }
+}
+
 export async function submitContactForm(prevState: ContactFormState, formData: FormData): Promise<ContactFormState> {
   // Validate form data
   const validatedFields = ContactFormSchema.safeParse({
@@ -31,6 +66,7 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
     email: formData.get("email"),
     subject: formData.get("subject"),
     message: formData.get("message"),
+    recaptchaToken: formData.get("recaptchaToken"),
   })
 
   // If validation fails, return errors
@@ -42,9 +78,23 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
     }
   }
 
-  const { name, email, subject, message } = validatedFields.data
+  const { name, email, subject, message, recaptchaToken } = validatedFields.data
 
   try {
+    // Verify reCAPTCHA token if provided
+    if (recaptchaToken) {
+      const isHuman = await verifyRecaptcha(recaptchaToken);
+      
+      if (!isHuman) {
+        return {
+          errors: {
+            _form: ["Bot activity detected. Please try again."],
+          },
+          success: false,
+        };
+      }
+    }
+    
     // Check if required environment variables are set
     if (
       !process.env.FROM_EMAIL ||

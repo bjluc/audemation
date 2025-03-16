@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react"
 import { emailConfig } from "@/app/config"
 import { useToast } from "@/components/ui/use-toast"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 
 export default function ContactForm() {
   // Use useState instead of useActionState
@@ -20,6 +21,9 @@ export default function ContactForm() {
   // Use toast for notifications
   const { toast } = useToast();
 
+  // Get reCAPTCHA execution function
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   // Reset form after successful submission
   const [resetKey, setResetKey] = useState(0)
   const formRef = useRef<HTMLFormElement>(null);
@@ -32,7 +36,31 @@ export default function ContactForm() {
     setIsSubmitting(true);
     
     try {
+      // Execute reCAPTCHA and get token
+      let recaptchaToken = "";
+      
+      if (executeRecaptcha) {
+        try {
+          recaptchaToken = await executeRecaptcha("contact_form");
+        } catch (recaptchaError) {
+          console.error("reCAPTCHA execution error:", recaptchaError);
+          toast({
+            title: "Error",
+            description: "Could not verify that you are not a robot. Please try again.",
+            variant: "destructive",
+          });
+          setIsSubmitting(false);
+          return;
+        }
+      } else {
+        console.warn("reCAPTCHA not available");
+      }
+      
       const formData = new FormData(event.currentTarget);
+      
+      // Add reCAPTCHA token to form data
+      formData.append("recaptchaToken", recaptchaToken);
+      
       const result = await submitContactForm(formState, formData);
       
       setFormState(result);
