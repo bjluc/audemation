@@ -32,14 +32,24 @@ export default function ContactForm() {
   // Track reCAPTCHA loading state
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   
+  // Track if component is mounted (client-side only)
+  const [isMounted, setIsMounted] = useState(false);
+  
   // reCAPTCHA site key from environment variable - using the name set in Vercel
   const recaptchaSiteKey = process.env.RECAPTCHA_SITE_KEY || "";
   
   // Use toast for notifications
   const { toast } = useToast();
 
-  // Initialize reCAPTCHA
+  // Set mounted state on client-side only
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Initialize reCAPTCHA - only run on client
+  useEffect(() => {
+    if (!isMounted) return;
+    
     // Log whether we have a site key
     console.log(`reCAPTCHA site key available: ${Boolean(recaptchaSiteKey)}`);
     
@@ -70,7 +80,7 @@ export default function ContactForm() {
       delete window.onRecaptchaLoad;
       clearTimeout(timeoutId);
     };
-  }, [recaptchaLoaded]);
+  }, [isMounted, recaptchaLoaded, recaptchaSiteKey]);
 
   // Reset form after successful submission
   const [resetKey, setResetKey] = useState(0)
@@ -216,11 +226,11 @@ export default function ContactForm() {
 
   return (
     <>
-      {/* Load reCAPTCHA script */}
-      {recaptchaSiteKey && (
+      {/* Only render reCAPTCHA script on client-side */}
+      {isMounted && recaptchaSiteKey && (
         <Script
           src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}&onload=onRecaptchaLoad`}
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
           onError={() => {
             console.error("Failed to load reCAPTCHA script");
             // Allow form submission even if script fails to load
@@ -229,7 +239,7 @@ export default function ContactForm() {
         />
       )}
       
-      {!recaptchaLoaded && (
+      {isMounted && !recaptchaLoaded && (
         <div className="mb-4 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-md flex items-start">
           <AlertCircle className="h-5 w-5 text-yellow-500 mr-2 flex-shrink-0 mt-0.5" />
           <div className="text-yellow-500 text-sm">
@@ -361,14 +371,14 @@ export default function ContactForm() {
         <Button 
           type="submit" 
           className="w-full bg-primary hover:bg-primary/90" 
-          disabled={isSubmitting || !recaptchaLoaded}
+          disabled={isSubmitting || (!isMounted || !recaptchaLoaded)}
         >
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Sending...
             </>
-          ) : !recaptchaLoaded ? (
+          ) : !isMounted || !recaptchaLoaded ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Loading security verification...
