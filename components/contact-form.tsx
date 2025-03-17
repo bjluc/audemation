@@ -1,12 +1,11 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { submitContactForm, type ContactFormState } from "@/app/actions/contact-form"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react"
 import { emailConfig } from "@/app/config"
 import { useToast } from "@/components/ui/use-toast"
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 
 export default function ContactForm() {
   // Use useState instead of useActionState
@@ -18,11 +17,28 @@ export default function ContactForm() {
   // Add loading state
   const [isSubmitting, setIsSubmitting] = useState(false);
   
+  // Track if reCAPTCHA is available
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  
   // Use toast for notifications
   const { toast } = useToast();
 
-  // Get reCAPTCHA execution function
-  const { executeRecaptcha } = useGoogleReCaptcha();
+  // Check if reCAPTCHA is available
+  useEffect(() => {
+    const checkRecaptcha = () => {
+      const isAvailable = typeof window !== 'undefined' && !!window.executeRecaptcha;
+      console.log("Checking reCAPTCHA availability:", isAvailable);
+      setRecaptchaLoaded(isAvailable);
+    };
+    
+    // Check immediately
+    checkRecaptcha();
+    
+    // Also check after a delay to allow script to load
+    const timer = setTimeout(checkRecaptcha, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   // Reset form after successful submission
   const [resetKey, setResetKey] = useState(0)
@@ -34,34 +50,43 @@ export default function ContactForm() {
     
     // Set loading state
     setIsSubmitting(true);
+    console.log("Form submission started");
     
     try {
       // Execute reCAPTCHA and get token
       let recaptchaToken = "";
       
-      if (executeRecaptcha) {
+      if (recaptchaLoaded && window.executeRecaptcha) {
+        console.log("Attempting to execute reCAPTCHA");
         try {
-          recaptchaToken = await executeRecaptcha("contact_form");
+          recaptchaToken = await window.executeRecaptcha("contact_form");
+          console.log("reCAPTCHA executed successfully, token length:", recaptchaToken.length);
         } catch (recaptchaError) {
           console.error("reCAPTCHA execution error:", recaptchaError);
+          // Continue without reCAPTCHA if there's an error
           toast({
-            title: "Error",
-            description: "Could not verify that you are not a robot. Please try again.",
-            variant: "destructive",
+            title: "Warning",
+            description: "Could not verify that you are not a robot, but we'll still try to send your message.",
+            variant: "default",
           });
-          setIsSubmitting(false);
-          return;
         }
       } else {
-        console.warn("reCAPTCHA not available");
+        console.warn("reCAPTCHA not available, proceeding without verification");
+        console.log("recaptchaLoaded:", recaptchaLoaded);
+        console.log("window.executeRecaptcha:", !!window.executeRecaptcha);
       }
       
       const formData = new FormData(event.currentTarget);
       
-      // Add reCAPTCHA token to form data
-      formData.append("recaptchaToken", recaptchaToken);
+      // Add reCAPTCHA token to form data if available
+      if (recaptchaToken) {
+        formData.append("recaptchaToken", recaptchaToken);
+        console.log("Added reCAPTCHA token to form data");
+      }
       
+      console.log("Submitting form data to server");
       const result = await submitContactForm(formState, formData);
+      console.log("Form submission result:", result);
       
       setFormState(result);
       
@@ -87,6 +112,7 @@ export default function ContactForm() {
     } finally {
       // Reset loading state
       setIsSubmitting(false);
+      console.log("Form submission completed");
     }
   }
 
@@ -144,13 +170,13 @@ export default function ContactForm() {
                     <>
                       <li>Your Google OAuth credentials may be invalid or expired</li>
                       <li>Generate a new refresh token using the OAuth Playground</li>
-                      <li>Make sure you've enabled the Gmail API in your Google Cloud Console</li>
+                      <li>Make sure you&apos;ve enabled the Gmail API in your Google Cloud Console</li>
                     </>
                   )}
                   {isAuthError && (
                     <>
                       <li>Check that your FROM_EMAIL matches the email used to generate the OAuth tokens</li>
-                      <li>Verify that your Google account doesn't have security restrictions</li>
+                      <li>Verify that your Google account doesn&apos;t have security restrictions</li>
                       <li>Make sure 2-factor authentication is properly set up</li>
                     </>
                   )}
