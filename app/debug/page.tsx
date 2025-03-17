@@ -25,7 +25,7 @@ export default function DebugPage() {
           </pre>
         </div>
         <p className="mt-2 text-sm text-gray-400">
-          Note: Only environment variables prefixed with NEXT_PUBLIC_ are available on the client.
+          Note: Make sure your environment variables are correctly set in Vercel.
         </p>
       </div>
       
