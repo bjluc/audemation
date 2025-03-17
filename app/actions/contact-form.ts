@@ -41,8 +41,14 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     // Get secret key from environment variable
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     
+    // Debug environment variables in server
+    console.log("Server environment variables check:", {
+      RECAPTCHA_SECRET_KEY_EXISTS: Boolean(secretKey),
+      NODE_ENV: process.env.NODE_ENV,
+    });
+    
     if (!secretKey) {
-      console.error("reCAPTCHA secret key is not configured");
+      console.error("reCAPTCHA secret key is not configured in environment variables");
       return true; // Allow submission if reCAPTCHA is not properly configured
     }
     

@@ -44,6 +44,13 @@ export default function ContactForm() {
   // Set mounted state on client-side only
   useEffect(() => {
     setIsMounted(true);
+    
+    // Debug environment variables in client
+    console.log("Environment variables available in client:", {
+      RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
+      // List any other environment variables you want to check
+      NODE_ENV: process.env.NODE_ENV,
+    });
   }, []);
 
   // Initialize reCAPTCHA - only run on client
@@ -52,6 +59,13 @@ export default function ContactForm() {
     
     // Log whether we have a site key
     console.log(`reCAPTCHA site key available: ${Boolean(recaptchaSiteKey)}`);
+    
+    // If no site key, allow form submission anyway
+    if (!recaptchaSiteKey) {
+      console.warn("No reCAPTCHA site key found in environment variables. Form will work without reCAPTCHA protection.");
+      setRecaptchaLoaded(true);
+      return;
+    }
     
     // Define callback for when reCAPTCHA script loads
     window.onRecaptchaLoad = () => {
