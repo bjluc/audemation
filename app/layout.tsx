@@ -72,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en-GB" className="scroll-smooth">
+    <html lang="en-GB" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${lora.className} bg-background`}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <ReCaptchaProvider>

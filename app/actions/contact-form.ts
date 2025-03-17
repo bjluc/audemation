@@ -34,10 +34,13 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
   if (!token) return false;
   
   try {
-    // Use hardcoded secret key for testing
-    const secretKey = "6Leig_YqAAAAAJbmx7jfT0Y39we2zawgCRu_F6iO";
+    // Get secret key from environment variable
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     
-    console.log("Verifying reCAPTCHA token with length:", token.length);
+    if (!secretKey) {
+      console.error("reCAPTCHA secret key is not configured");
+      return false;
+    }
     
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
@@ -48,7 +51,6 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     });
     
     const data = await response.json();
-    console.log("reCAPTCHA verification response:", data);
     
     // Check if the score is above threshold (0.3 is more lenient)
     return data.success && data.score >= 0.3;
@@ -87,11 +89,6 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
     if (recaptchaToken) {
       const isHuman = await verifyRecaptcha(recaptchaToken);
       isLikelyBot = !isHuman;
-      
-      // Log but don't block if it seems like a bot
-      if (isLikelyBot) {
-        console.warn("Potential bot activity detected, but proceeding with submission");
-      }
     }
     
     // Check if required environment variables are set
