@@ -31,44 +31,40 @@ export type ContactFormState = {
  * @returns True if verification is successful, false otherwise
  */
 async function verifyRecaptcha(token: string): Promise<boolean> {
-  // If no token is provided, allow the submission but log it
-  if (!token) {
-    console.warn("No reCAPTCHA token provided, allowing submission but marking as potential risk");
-    return true; // Allow submission but it will be marked with a warning
+  // If no secret key is available, log a warning and allow the submission
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  
+  if (!secretKey) {
+    console.warn("RECAPTCHA_SECRET_KEY is not set. Skipping reCAPTCHA verification.");
+    return true;
   }
   
   try {
-    // Get secret key from environment variable
-    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-    
-    // Debug environment variables in server
-    console.log("Server environment variables check:", {
-      RECAPTCHA_SECRET_KEY_EXISTS: Boolean(secretKey),
-      NODE_ENV: process.env.NODE_ENV,
-    });
-    
-    if (!secretKey) {
-      console.error("reCAPTCHA secret key is not configured in environment variables");
-      return true; // Allow submission if reCAPTCHA is not properly configured
-    }
-    
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: `secret=${secretKey}&response=${token}`,
+      body: new URLSearchParams({
+        secret: secretKey,
+        response: token,
+      }),
     });
-    
+
     const data = await response.json();
     
-    // Check if the score is above threshold (0.3 is more lenient)
-    // Log the score for debugging
-    console.log(`reCAPTCHA verification result: success=${data.success}, score=${data.score}`);
-    return data.success && data.score >= 0.3;
+    console.log("reCAPTCHA verification response:", data);
+    
+    if (data.success) {
+      return true;
+    } else {
+      console.error("reCAPTCHA verification failed:", data["error-codes"]);
+      return false;
+    }
   } catch (error) {
-    console.error('reCAPTCHA verification error:', error);
-    // Allow submission if verification fails due to technical issues
+    console.error("Error verifying reCAPTCHA:", error);
+    // In case of an error with the reCAPTCHA service, we'll allow the submission
+    // This prevents the form from being blocked if Google's services are down
     return true;
   }
 }

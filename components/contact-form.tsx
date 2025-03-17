@@ -36,7 +36,7 @@ export default function ContactForm() {
   const [isMounted, setIsMounted] = useState(false);
   
   // reCAPTCHA site key from environment variable - using the name set in Vercel
-  const recaptchaSiteKey = process.env.RECAPTCHA_SITE_KEY || "";
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
   
   // Use toast for notifications
   const { toast } = useToast();
@@ -47,7 +47,7 @@ export default function ContactForm() {
     
     // Debug environment variables in client
     console.log("Environment variables available in client:", {
-      RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
+      NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
       // List any other environment variables you want to check
       NODE_ENV: process.env.NODE_ENV,
     });
