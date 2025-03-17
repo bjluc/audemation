@@ -32,19 +32,25 @@ export default function ContactForm() {
   // Track reCAPTCHA loading state
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   
-  // reCAPTCHA site key from environment variable
-  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+  // reCAPTCHA site key from environment variable - using the name set in Vercel
+  const recaptchaSiteKey = process.env.RECAPTCHA_SITE_KEY || "";
   
   // Use toast for notifications
   const { toast } = useToast();
 
   // Initialize reCAPTCHA
   useEffect(() => {
+    // Log whether we have a site key
+    console.log(`reCAPTCHA site key available: ${Boolean(recaptchaSiteKey)}`);
+    
     // Define callback for when reCAPTCHA script loads
     window.onRecaptchaLoad = () => {
+      console.log("onRecaptchaLoad callback triggered");
       if (window.grecaptcha) {
         console.log("reCAPTCHA is ready");
         setRecaptchaLoaded(true);
+      } else {
+        console.log("grecaptcha object not available in onRecaptchaLoad callback");
       }
     };
     
@@ -215,6 +221,11 @@ export default function ContactForm() {
         <Script
           src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}&onload=onRecaptchaLoad`}
           strategy="beforeInteractive"
+          onError={() => {
+            console.error("Failed to load reCAPTCHA script");
+            // Allow form submission even if script fails to load
+            setRecaptchaLoaded(true);
+          }}
         />
       )}
       
