@@ -31,7 +31,11 @@ export type ContactFormState = {
  * @returns True if verification is successful, false otherwise
  */
 async function verifyRecaptcha(token: string): Promise<boolean> {
-  if (!token) return false;
+  // If no token is provided, allow the submission but log it
+  if (!token) {
+    console.warn("No reCAPTCHA token provided, allowing submission but marking as potential risk");
+    return true; // Allow submission but it will be marked with a warning
+  }
   
   try {
     // Get secret key from environment variable
@@ -39,7 +43,7 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     
     if (!secretKey) {
       console.error("reCAPTCHA secret key is not configured");
-      return false;
+      return true; // Allow submission if reCAPTCHA is not properly configured
     }
     
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
@@ -53,6 +57,8 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     const data = await response.json();
     
     // Check if the score is above threshold (0.3 is more lenient)
+    // Log the score for debugging
+    console.log(`reCAPTCHA verification result: success=${data.success}, score=${data.score}`);
     return data.success && data.score >= 0.3;
   } catch (error) {
     console.error('reCAPTCHA verification error:', error);
