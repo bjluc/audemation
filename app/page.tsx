@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import TechStack from "@/components/tech-stack"
 import BackgroundAnimation from "@/components/background_animation"
 import ContactForm from "@/components/contact-form"
+import ROISection from "@/components/roi-section"
 
 export default function Home() {
   return (
@@ -396,27 +397,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Technology Stack Section */}
-      <section id="tech-stack" className="py-16 relative" aria-labelledby="tech-stack-heading">
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-10 md:mb-16">
-            <div className="flex justify-center mb-4">
-              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
-                <span className="text-sm font-medium section-title">Technology</span>
-              </div>
-            </div>
-            <h2 id="tech-stack-heading" className="text-3xl md:text-4xl font-bold text-gradient mb-4">
-              Our Technology Stack
-            </h2>
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8">
-              We leverage cutting-edge technologies to build powerful, scalable automation solutions that are secure,
-              reliable, and GDPR-compliant.
-            </p>
-          </div>
-
-          <TechStack />
-        </div>
-      </section>
+      {/* ROI Calculator Section */}
+      <ROISection />
 
       {/* CTA Section */}
       <section className="py-16 relative overflow-hidden" aria-labelledby="cta-heading">
