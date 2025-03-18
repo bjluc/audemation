@@ -15,8 +15,10 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
             <div className="w-full md:w-1/2 space-y-4 md:space-y-6 text-center md:text-left">
-              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4 mx-auto md:mx-0">
-                <span className="text-sm font-medium section-title">Automation for Service Accommodation</span>
+              <div className="flex justify-center md:justify-start">
+                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                  <span className="text-sm font-medium section-title">Automation for Service Accommodation</span>
+                </div>
               </div>
               <h1 id="hero-heading" className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-gradient">
                 Transform Your Business with Intelligent Automation
@@ -60,8 +62,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-dot-pattern opacity-10"></div>
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-10 md:mb-16">
-            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4">
-              <span className="text-sm font-medium section-title">About Us</span>
+            <div className="flex justify-center mb-4">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                <span className="text-sm font-medium section-title">About Us</span>
+              </div>
             </div>
             <h2 id="about-heading" className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-4">
               Who We Are
@@ -123,8 +127,10 @@ export default function Home() {
       <section id="services" className="py-16 relative" aria-labelledby="services-heading">
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-10 md:mb-16">
-            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4">
-              <span className="text-sm font-medium section-title">Our Services</span>
+            <div className="flex justify-center mb-4">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                <span className="text-sm font-medium section-title">Our Services</span>
+              </div>
             </div>
             <h2 id="services-heading" className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-4">
               What We Offer
@@ -181,9 +187,11 @@ export default function Home() {
       <section id="airbnb-bot" className="py-10 md:py-16 relative" aria-labelledby="airbnb-bot-heading">
         <div className="absolute inset-0 bg-dot-pattern opacity-10"></div>
         <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-10 md:mb-16">
-            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4">
-              <span className="text-sm font-medium section-title">Featured Product</span>
+          <div className="flex flex-col items-center text-center mb-10 md:mb-16">
+            <div className="mb-4">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                <span className="text-sm font-medium section-title">Featured Product</span>
+              </div>
             </div>
             <h2 id="airbnb-bot-heading" className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-4">
               Introducing AirbnbBot
@@ -298,8 +306,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-dot-pattern opacity-10"></div>
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-10 md:mb-16">
-            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4">
-              <span className="text-sm font-medium section-title">Benefits</span>
+            <div className="flex justify-center mb-4">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                <span className="text-sm font-medium section-title">Benefits</span>
+              </div>
             </div>
             <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-gradient mb-4">
               Why Choose Automation
@@ -390,8 +400,10 @@ export default function Home() {
       <section id="tech-stack" className="py-16 relative" aria-labelledby="tech-stack-heading">
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-10 md:mb-16">
-            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4">
-              <span className="text-sm font-medium section-title">Technology</span>
+            <div className="flex justify-center mb-4">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                <span className="text-sm font-medium section-title">Technology</span>
+              </div>
             </div>
             <h2 id="tech-stack-heading" className="text-3xl md:text-4xl font-bold text-gradient mb-4">
               Our Technology Stack
@@ -430,8 +442,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-dot-pattern opacity-10"></div>
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-16">
-            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4">
-              <span className="text-sm font-medium section-title">Contact</span>
+            <div className="flex justify-center mb-4">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                <span className="text-sm font-medium section-title">Contact</span>
+              </div>
             </div>
             <h2 id="contact-heading" className="text-3xl md:text-4xl font-bold text-gradient mb-4">
               Get In Touch

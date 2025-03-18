@@ -128,7 +128,11 @@
 .text-gradient {
   background: linear-gradient(to right, #c084fc, #a855f7, #8b5cf6);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  padding-bottom: 0.1em; /* Add padding to prevent text clipping */
+  display: inline-block; /* Ensure the gradient applies correctly */
 }
 
 /* Fix for iOS text rendering */

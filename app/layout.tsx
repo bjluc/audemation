@@ -88,7 +88,7 @@ export default function RootLayout({
                     </Link>
 
                     {/* Desktop navigation */}
-                    <nav className="hidden md:flex space-x-8 relative z-10" aria-label="Main Navigation">
+                    <nav className="hidden lg:flex space-x-8 relative z-10" aria-label="Main Navigation">
                       <Link href="/#home" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
                         Home
                       </Link>
@@ -124,12 +124,14 @@ export default function RootLayout({
                       </Link>
                     </nav>
 
-                    <div className="hidden md:block relative z-10">
+                    <div className="hidden lg:block relative z-10">
                       <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
                     </div>
 
                     {/* Mobile menu button */}
-                    <MobileNav />
+                    <div className="lg:hidden">
+                      <MobileNav />
+                    </div>
                   </div>
                 </div>
               </header>

@@ -11,8 +11,14 @@ export default function MobileNav() {
   return (
     <>
       {/* Hamburger button */}
-      <Button variant="ghost" size="icon" onClick={() => setIsOpen(true)} aria-label="Open menu">
-        <Menu className="h-10 w-10" />
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        onClick={() => setIsOpen(true)} 
+        aria-label="Open menu"
+        className="md:hidden"
+      >
+        <Menu className="h-6 w-6" />
       </Button>
 
       {/* Mobile menu portal */}
