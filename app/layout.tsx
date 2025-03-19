@@ -12,6 +12,7 @@ import SmoothScroll from "@/components/smooth-scroll"
 import Script from "next/script"
 import { Toaster } from "@/components/ui/toaster"
 import ReCaptchaProvider from "@/components/recaptcha-provider"
+import MetaPixel from "@/components/MetaPixel"
 
 const lora = Lora({
   subsets: ["latin"],
@@ -76,6 +77,7 @@ export default function RootLayout({
       <body className={`${lora.className} bg-background`}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <ReCaptchaProvider>
+            <MetaPixel />
             <SmoothScroll />
             <AnimatedGradientBackground />
             <FloatingShapes />
