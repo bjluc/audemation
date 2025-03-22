@@ -1,6 +1,6 @@
 import Image from "next/image"
-import { Zap } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Zap, ArrowRight } from "lucide-react"
+import { NavButton } from "@/components/ui/nav-button"
 
 export default function AirbnbBotShowcase() {
   return (
@@ -112,7 +112,13 @@ export default function AirbnbBotShowcase() {
             </div>
 
             <div className="text-center mt-8">
-              <Button className="bg-primary hover:bg-primary/90 w-full sm:w-auto">Learn More About AirbnbBot</Button>
+              <NavButton 
+                href="/#contact"
+                size="lg"
+                className="bg-primary hover:bg-primary/90 group w-full sm:w-auto"
+              >
+                Learn More About AirbnbBot <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </NavButton>
             </div>
           </div>
         </div>

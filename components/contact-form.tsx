@@ -222,7 +222,8 @@ export default function ContactForm() {
             setResetKey((prev) => prev + 1);
             setFormState({ errors: {}, success: false });
           }} 
-          className="bg-primary hover:bg-primary/90"
+          size="lg"
+          className="bg-primary hover:bg-primary/90 group w-full sm:w-auto"
         >
           Send Another Message
         </Button>

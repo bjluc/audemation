@@ -2,23 +2,38 @@
 
 import Script from 'next/script';
 
+// Declare Facebook Pixel types
+declare global {
+  interface Window {
+    fbq: any;
+    _fbq: any;
+  }
+}
+
 export default function MetaPixel() {
   return (
     <>
-      <Script id="facebook-pixel" strategy="afterInteractive">
-        {`
-          !function(f,b,e,v,n,t,s)
-          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '417467987345117');
-          fbq('track', 'PageView');
-        `}
-      </Script>
+      <Script
+        src="https://connect.facebook.net/en_US/fbevents.js"
+        strategy="lazyOnload"
+        onError={(e) => {
+          // Silently handle the error - likely due to ad blocker
+          console.debug('Meta Pixel loading was blocked (likely due to ad blocker)');
+        }}
+        onLoad={() => {
+          try {
+            window.fbq = window.fbq || function() {
+              (window.fbq.q = window.fbq.q || []).push(arguments);
+            };
+            window._fbq = window._fbq || window.fbq;
+            window.fbq('init', '417467987345117');
+            window.fbq('track', 'PageView');
+          } catch (error) {
+            // Silently handle any errors during initialization
+            console.debug('Meta Pixel initialization failed');
+          }
+        }}
+      />
       <noscript>
         <img
           height="1"
@@ -26,6 +41,7 @@ export default function MetaPixel() {
           style={{ display: 'none' }}
           src="https://www.facebook.com/tr?id=417467987345117&ev=PageView&noscript=1"
           alt=""
+          loading="lazy"
         />
       </noscript>
     </>

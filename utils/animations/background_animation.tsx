@@ -108,6 +108,6 @@ export default function BackgroundAnimation() {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10 opacity-75\" />
+  return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-20 opacity-75 pointer-events-none" />
 }
 

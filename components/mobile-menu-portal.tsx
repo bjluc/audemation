@@ -80,16 +80,19 @@ export default function MobileMenuPortal({ isOpen, onClose }: MobileMenuPortalPr
           </Link>
         ))}
 
-        <Button
-          className="mt-6 bg-primary hover:bg-primary/90 text-lg px-10 py-6 rounded-xl"
-          onClick={onClose}
-          style={{
-            animation: "fadeIn 0.3s ease forwards 0.5s",
-            opacity: 0,
+        <a
+          href="https://calendly.com/bernard-audemation/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex items-center justify-center w-full bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl text-lg font-medium"
+          onClick={(e) => {
+            e.preventDefault();
+            onClose();
+            window.open("https://calendly.com/bernard-audemation/30min", "_blank");
           }}
         >
           Get Started
-        </Button>
+        </a>
       </nav>
 
       {/* Add animation keyframes and hover styles */}

@@ -6,6 +6,7 @@ import TechStack from "@/components/tech-stack"
 import BackgroundAnimation from "@/components/background_animation"
 import ContactForm from "@/components/contact-form"
 import ROISection from "@/components/roi-section"
+import CTA from "@/components/cta-section"
 
 export default function Home() {
   return (
@@ -30,12 +31,40 @@ export default function Home() {
                 accommodation providers.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 group w-full sm:w-auto">
+                <Link 
+                  href="https://calendly.com/bernard-audemation/30min"
+                  target="_blank"
+                  className="
+                    inline-flex items-center justify-center
+                    px-8 py-4
+                    text-lg font-medium text-white
+                    bg-primary hover:bg-primary/90
+                    rounded-xl
+                    transition-all
+                    cursor-pointer
+                    shadow-lg hover:shadow-xl
+                    active:scale-95
+                    w-full sm:w-auto
+                  "
+                >
                   Get Started <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 w-full sm:w-auto">
+                </Link>
+                <Link 
+                  href="#services"
+                  className="
+                    inline-flex items-center justify-center
+                    px-8 py-4
+                    text-lg font-medium
+                    border border-white/10
+                    hover:bg-white/5
+                    rounded-xl
+                    transition-all
+                    cursor-pointer
+                    w-full sm:w-auto
+                  "
+                >
                   Learn More
-                </Button>
+                </Link>
               </div>
             </div>
             <div className="w-full md:w-1/2 relative mt-8 md:mt-0 mx-auto">
@@ -400,21 +429,69 @@ export default function Home() {
       {/* ROI Calculator Section */}
       <ROISection />
 
+      {/* Tech Stack Section */}
+      <section id="tech-stack" className="py-16 relative" aria-labelledby="tech-stack-heading">
+        <div className="absolute inset-0 bg-dot-pattern opacity-10"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-10 md:mb-16">
+            <div className="flex justify-center mb-4">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                <span className="text-sm font-medium section-title">Technology</span>
+              </div>
+            </div>
+            <h2 id="tech-stack-heading" className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-4">
+              Our Tech Stack
+            </h2>
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8">
+              We use cutting-edge technologies to deliver reliable, scalable, and secure automation solutions for your business.
+            </p>
+          </div>
+
+          {/* Tech Stack Component */}
+          <TechStack />
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-16 relative overflow-hidden" aria-labelledby="cta-heading">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-indigo-900/20 animate-gradient-x"></div>
+      <section className="relative py-16">
+        {/* Background gradient with animation */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-indigo-900/20 animate-gradient-x pointer-events-none"></div>
+        
+        {/* Dot pattern overlay */}
+        <div className="absolute inset-0 bg-dot-pattern opacity-10 pointer-events-none"></div>
+
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-3xl mx-auto">
-            <h2 id="cta-heading" className="text-3xl md:text-4xl font-bold text-gradient mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-6">
               Transform Your Airbnb Business with AirbnbBot Today
             </h2>
             <p className="text-xl mb-8 text-foreground/80">
               Experience the power of automation and take your customer service to the next level with our innovative
               chatbot solutions. Join hundreds of successful UK property managers already using our platform.
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90 group">
-              Get Started Today! <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+
+            <div className="space-y-4">
+              {/* Main CTA Button */}
+              <div>
+                <Link 
+                  href="https://calendly.com/bernard-audemation/30min"
+                  target="_blank"
+                  className="
+                    inline-flex items-center justify-center
+                    px-8 py-4
+                    text-lg font-medium text-white
+                    bg-primary hover:bg-primary/90
+                    rounded-xl
+                    transition-all
+                    cursor-pointer
+                    shadow-lg hover:shadow-xl
+                    active:scale-95
+                  "
+                >
+                  Get Started Today! <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

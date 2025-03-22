@@ -4,7 +4,7 @@ import type { Metadata } from "next"
 import { Lora } from "next/font/google"
 import Link from "next/link"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Button } from "@/components/ui/button"
+import { NavButton } from "@/components/ui/nav-button"
 import AnimatedGradientBackground from "@/components/animated-gradient-background"
 import FloatingShapes from "@/components/floating-shapes"
 import MobileNav from "@/components/mobile-nav"
@@ -13,6 +13,7 @@ import Script from "next/script"
 import { Toaster } from "@/components/ui/toaster"
 import ReCaptchaProvider from "@/components/recaptcha-provider"
 import MetaPixel from "@/components/MetaPixel"
+import { Button } from "@/components/ui/button"
 
 const lora = Lora({
   subsets: ["latin"],
@@ -74,74 +75,79 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${lora.className} bg-background`}>
+      <body className={`${lora.className} bg-background`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark">
-          <ReCaptchaProvider>
-            <MetaPixel />
-            <SmoothScroll />
-            <AnimatedGradientBackground />
-            <FloatingShapes />
-            <div className="bg-grid">
-              <header className="sticky top-0 z-[100] backdrop-blur-md bg-background/70 border-b border-white/10">
-                <div className="container mx-auto px-4">
-                  <div className="flex items-center justify-between h-16">
-                    <Link href="/" className="text-3xl font-bold text-gradient relative z-10" aria-label="Audemation - Home">
-                      Audemation
+          <MetaPixel />
+          <SmoothScroll />
+          <AnimatedGradientBackground />
+          <FloatingShapes />
+          <div className="bg-grid">
+            <header className="sticky top-0 z-[100] backdrop-blur-md bg-background/70 border-b border-white/10">
+              <div className="container mx-auto px-4">
+                <div className="flex items-center justify-between h-16">
+                  <Link href="/" className="text-3xl font-bold text-gradient relative z-10" aria-label="Audemation - Home">
+                    Audemation
+                  </Link>
+
+                  {/* Desktop navigation */}
+                  <nav className="hidden lg:flex space-x-8 relative z-10" aria-label="Main Navigation">
+                    <Link href="/#home" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
+                      Home
                     </Link>
+                    <Link href="/#about" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
+                      About
+                    </Link>
+                    <Link
+                      href="/#services"
+                      className="text-foreground/80 hover-gradient-text transition-colors nav-link"
+                    >
+                      Services
+                    </Link>
+                    <Link
+                      href="/#benefits"
+                      className="text-foreground/80 hover-gradient-text transition-colors nav-link"
+                    >
+                      Benefits
+                    </Link>
+                    <Link
+                      href="/#tech-stack"
+                      className="text-foreground/80 hover-gradient-text transition-colors nav-link"
+                    >
+                      Technology
+                    </Link>
+                    <Link
+                      href="/#airbnb-bot"
+                      className="text-foreground/80 hover-gradient-text transition-colors nav-link"
+                    >
+                      AirbnbBot
+                    </Link>
+                    <Link href="/#contact" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
+                      Contact
+                    </Link>
+                  </nav>
 
-                    {/* Desktop navigation */}
-                    <nav className="hidden lg:flex space-x-8 relative z-10" aria-label="Main Navigation">
-                      <Link href="/#home" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
-                        Home
-                      </Link>
-                      <Link href="/#about" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
-                        About
-                      </Link>
-                      <Link
-                        href="/#services"
-                        className="text-foreground/80 hover-gradient-text transition-colors nav-link"
+                  <div className="hidden lg:block relative z-10">
+                    <Link href="https://calendly.com/bernard-audemation/30min" target="_blank" rel="noopener noreferrer">
+                      <Button 
+                        size="lg"
+                        className="bg-primary hover:bg-primary/90 group"
                       >
-                        Services
-                      </Link>
-                      <Link
-                        href="/#benefits"
-                        className="text-foreground/80 hover-gradient-text transition-colors nav-link"
-                      >
-                        Benefits
-                      </Link>
-                      <Link
-                        href="/#tech-stack"
-                        className="text-foreground/80 hover-gradient-text transition-colors nav-link"
-                      >
-                        Technology
-                      </Link>
-                      <Link
-                        href="/#airbnb-bot"
-                        className="text-foreground/80 hover-gradient-text transition-colors nav-link"
-                      >
-                        AirbnbBot
-                      </Link>
-                      <Link href="/#contact" className="text-foreground/80 hover-gradient-text transition-colors nav-link">
-                        Contact
-                      </Link>
-                    </nav>
+                        Get Started
+                      </Button>
+                    </Link>
+                  </div>
 
-                    <div className="hidden lg:block relative z-10">
-                      <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
-                    </div>
-
-                    {/* Mobile menu button */}
-                    <div className="lg:hidden">
-                      <MobileNav />
-                    </div>
+                  {/* Mobile menu button */}
+                  <div className="lg:hidden">
+                    <MobileNav />
                   </div>
                 </div>
-              </header>
+              </div>
+            </header>
 
-              <main>{children}</main>
-            </div>
-            <Toaster />
-          </ReCaptchaProvider>
+            <main>{children}</main>
+          </div>
+          <Toaster />
         </ThemeProvider>
 
         {/* Schema.org structured data */}

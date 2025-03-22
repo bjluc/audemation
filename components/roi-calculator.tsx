@@ -61,7 +61,7 @@ const ROICalculator = ({
   buttonText = "Calculate Your Savings", 
   className = "bg-primary hover:bg-primary/90 group w-full sm:w-auto",
   size = "default",
-  calendlyUrl = "https://calendly.com/audemation/demo" // Default Calendly URL
+  calendlyUrl = "https://calendly.com/bernard-audemation/30min" // Default Calendly URL
 }: ROICalculatorProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [propertyCount, setPropertyCount] = useState<number>(10);
@@ -130,12 +130,12 @@ const ROICalculator = ({
             className="w-full max-w-4xl my-auto" 
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-background/95 backdrop-blur-xl p-4 sm:p-6 rounded-xl relative animate-fade-in animate-scale-in border border-primary/20 shadow-2xl">
+            <div className="bg-background/95 backdrop-blur-xl p-5 sm:p-6 rounded-xl relative animate-fade-in animate-scale-in border border-primary/20 shadow-2xl">
               {/* Close button - Fixed position to ensure it's always visible */}
               <div className="sticky top-0 flex justify-end -mt-1 -mr-1 sm:-mt-2 sm:-mr-2 mb-2 z-10">
                 <button 
                   onClick={closeModal}
-                  className="p-3 rounded-full bg-primary/20 hover:bg-primary/40 transition-colors"
+                  className="p-3 rounded-xl bg-primary/20 hover:bg-primary/40 transition-colors"
                   aria-label="Close calculator"
                 >
                   <X className="h-5 w-5" />
@@ -147,12 +147,12 @@ const ROICalculator = ({
                 See how much time and money your property management business could save with our automation solutions.
               </p>
 
-              <div className="bg-primary/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg border border-primary/20 mb-6 shadow-lg">
+              <div className="bg-primary/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-primary/20 mb-6 shadow-lg">
                 <div className="mb-4">
                   <label htmlFor="propertyCount" className="block text-foreground font-medium mb-3">
                     How many properties do you manage?
                   </label>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <input
                       type="range"
                       id="propertyCount"
@@ -163,7 +163,7 @@ const ROICalculator = ({
                       onChange={(e) => setPropertyCount(parseInt(e.target.value))}
                       className="w-full h-3 bg-primary/30 rounded-lg appearance-none cursor-pointer"
                     />
-                    <div className="bg-primary/20 backdrop-blur-sm px-4 py-2 rounded-lg min-w-[60px] text-center">
+                    <div className="bg-primary/20 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-xl min-w-[60px] text-center">
                       <span className="text-foreground font-bold">{propertyCount}</span>
                     </div>
                   </div>
@@ -172,7 +172,7 @@ const ROICalculator = ({
                 <div className="text-center mt-6">
                   <Button 
                     onClick={handleCalculate} 
-                    className="bg-primary hover:bg-primary/90 group w-full sm:w-auto py-6 sm:py-2"
+                    className="bg-primary hover:bg-primary/90 group w-full sm:w-auto py-4 sm:py-2 px-6"
                   >
                     Calculate My Savings <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
@@ -180,11 +180,11 @@ const ROICalculator = ({
               </div>
 
               {showResults && (
-                <div className="animate-fade-in space-y-6">
+                <div className="animate-fade-in space-y-4 sm:space-y-6">
                   <h4 className="text-lg font-bold text-gradient mb-4 text-center">Your Estimated Savings</h4>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
-                    <div className="bg-primary/10 backdrop-blur-sm p-5 sm:p-6 rounded-lg border border-primary/20 text-center shadow-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6 mb-4 sm:mb-6">
+                    <div className="bg-primary/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-primary/20 text-center shadow-lg">
                       <div className="mb-2 text-foreground/90">Weekly Time Savings</div>
                       <div className="text-3xl font-bold text-gradient mb-1">{savings.hoursPerWeek} hours</div>
                       <p className="text-sm text-foreground/90">
@@ -192,7 +192,7 @@ const ROICalculator = ({
                       </p>
                     </div>
 
-                    <div className="bg-primary/10 backdrop-blur-sm p-5 sm:p-6 rounded-lg border border-primary/20 text-center shadow-lg">
+                    <div className="bg-primary/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-primary/20 text-center shadow-lg">
                       <div className="mb-2 text-foreground/90">Monthly Cost Savings</div>
                       <div className="text-3xl font-bold text-gradient mb-1">£{savings.monthlySavings}</div>
                       <p className="text-sm text-foreground/90">
@@ -201,7 +201,7 @@ const ROICalculator = ({
                     </div>
                   </div>
 
-                  <div className="bg-primary/10 backdrop-blur-sm p-4 rounded-lg border border-primary/20 text-center shadow-lg">
+                  <div className="bg-primary/10 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-primary/20 text-center shadow-lg">
                     <p className="text-sm text-foreground/90 italic">
                       "With AirbnbBot, I've reclaimed 20+ hours every week while improving my guest review scores. It's been transformative for my business."
                     </p>
@@ -210,10 +210,10 @@ const ROICalculator = ({
                     </p>
                   </div>
                   
-                  <div className="text-center mt-8">
+                  <div className="text-center mt-6 sm:mt-8">
                     <Link href={calendlyUrl} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-block">
                       <Button
-                        className="bg-primary hover:bg-primary/90 group w-full py-6 sm:py-2"
+                        className="bg-primary hover:bg-primary/90 group w-full py-4 sm:py-2 px-6"
                         size="lg"
                       >
                         Schedule a Demo <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
