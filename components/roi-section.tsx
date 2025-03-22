@@ -24,7 +24,7 @@ export default function ROISection() {
             buttonText="Calculate Your Savings" 
             className="bg-primary hover:bg-primary/90 group text-white py-6 px-8 text-lg"
             size="lg"
-            calendlyUrl="https://calendly.com/audemation/demo"
+            calendlyUrl="https://calendly.com/bernard-audemation/30min"
           />
         </div>
       </div>
