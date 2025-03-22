@@ -164,7 +164,7 @@ const ROICalculator = ({
                       className="w-full h-3 bg-primary/30 rounded-lg appearance-none cursor-pointer"
                     />
                     <div className="bg-primary/20 backdrop-blur-sm px-4 py-2 rounded-lg min-w-[60px] text-center">
-                      <span className="text-primary font-bold">{propertyCount}</span>
+                      <span className="text-foreground font-bold">{propertyCount}</span>
                     </div>
                   </div>
                 </div>
