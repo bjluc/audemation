@@ -14,6 +14,9 @@ import { Toaster } from "@/components/ui/toaster"
 import ReCaptchaProvider from "@/components/recaptcha-provider"
 import MetaPixel from "@/components/MetaPixel"
 import { Button } from "@/components/ui/button"
+import PhoneNumber from "@/components/PhoneNumber"
+import { Phone, Mail } from "lucide-react"
+import Footer from "@/components/Footer"
 
 const lora = Lora({
   subsets: ["latin"],
@@ -146,6 +149,7 @@ export default function RootLayout({
             </header>
 
             <main>{children}</main>
+            <Footer />
           </div>
           <Toaster />
         </ThemeProvider>
@@ -172,7 +176,12 @@ export default function RootLayout({
               },
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+44-7123-4567",
+                // Phone number is obfuscated to prevent bot scraping
+                // Format: [country code]-[area code]-[number]
+                // Each part is reversed and encoded to prevent direct scraping
+                telephone: "44-7763-572224".split("-").map(part => 
+                  part.split("").reverse().join("")
+                ).join("-"),
                 contactType: "customer service",
                 email: "info@audemation.com",
               },

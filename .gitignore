@@ -19,6 +19,15 @@
 # production
 /build
 
+# development scripts
+/.scripts/
+/scripts/
+
+# calendly
+calendly-description.txt
+calendly-description.md
+calendly-description.html
+
 # misc
 .DS_Store
 *.pem
@@ -41,3 +50,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# logo files
+/public/images/audemation-logo.svg
+/public/images/audemation-logo.png
