@@ -47,11 +47,11 @@ export default function Hero() {
               <div className="relative glass-card rounded-2xl p-4 md:p-6 animate-float overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/30 to-indigo-900/30 mix-blend-multiply z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
                 <Image
-                  src="/images/man-with-chatbot.jpeg"
-                  alt="Professional property manager using Audemation's AI chatbot interface to automate guest communications and property management tasks"
-                  width={800}
-                  height={600}
-                  className="object-cover rounded-lg"
+                  src="/images/chatbot-dashboard.jpg"
+                  alt="Professional business dashboard showing chatbot analytics, lead generation metrics, and data analysis interface with a $20,000 revenue indicator"
+                  width={1640}
+                  height={924}
+                  className="object-cover rounded-lg w-full h-full"
                   priority
                 />
               </div>

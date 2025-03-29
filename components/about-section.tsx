@@ -21,16 +21,16 @@ export default function About() {
 
         <div className="grid md:grid-cols-2 gap-4 md:gap-6 items-center">
           <div className="relative order-2 md:order-1 mx-auto">
-            <div className="max-w-md mx-auto relative">
+            <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl blur-md opacity-20"></div>
               <div className="relative glass-card rounded-2xl p-4 md:p-6 overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/30 to-indigo-900/30 mix-blend-multiply z-10 transition-opacity duration-300 group-hover:opacity-0"></div>
                 <Image
                   src="/images/who-we-are.jpeg"
                   alt="Audemation's London office showcasing our team of automation specialists working on property management solutions"
-                  width={800}
-                  height={600}
-                  className="object-cover rounded-lg"
+                  width={1640}
+                  height={924}
+                  className="object-cover rounded-lg w-full h-full"
                   priority
                 />
               </div>
