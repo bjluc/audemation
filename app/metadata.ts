@@ -2,40 +2,44 @@ import { Metadata } from "next"
 
 export const siteConfig = {
   name: "Audemation - Smart Property Management with Local Insights",
-  description: "Transform your property management with our intelligent platform featuring local area knowledge, live weather updates, and 24/7 guest support. Try free for one property during beta - no credit card required.",
+  description: "Revolutionise property management with AI-powered automation. Get local area expertise and live weather updates. Try our premium features free for one property.",
   url: "https://audemation.com",
-  ogImage: "https://audemation.com/og-image.jpg",
+  ogImage: "https://audemation.com/og.jpg",
   links: {
     twitter: "https://twitter.com/audemation",
-    github: "https://github.com/audemation"
-  }
+  },
 }
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
-    "local area recommendations",
-    "property area guide",
-    "live weather updates",
-    "local event information",
-    "free property automation",
-    "property management beta",
-    "self-learning AI automation",
-    "human-in-the-loop AI",
-    "no-code property automation",
+    "property management",
+    "AI chatbot",
+    "automation",
+    "local area guide",
+    "property automation",
+    "smart property management",
+    "AI property assistant",
+    "property management automation",
+    "local insights",
+    "weather updates",
     "property management software",
     "UK property management",
-    "automated guest messaging",
-    "free trial automation",
-    "beta testing program",
-    "no credit card trial"
+    "automated guest communication",
+    "property management solution",
+    "AI-powered property management"
   ],
-  authors: [{ name: "Audemation" }],
+  authors: [
+    {
+      name: "Audemation",
+      url: siteConfig.url,
+    },
+  ],
   creator: "Audemation",
   openGraph: {
     type: "website",
@@ -49,16 +53,16 @@ export const defaultMetadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: siteConfig.name
-      }
-    ]
+        alt: siteConfig.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: "@audemation"
+    creator: "@audemation",
   },
   robots: {
     index: true,
@@ -66,9 +70,9 @@ export const defaultMetadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large' as const,
-      'max-snippet': -1,
-    }
-  }
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 } 

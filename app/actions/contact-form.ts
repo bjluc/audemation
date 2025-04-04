@@ -2,7 +2,7 @@
 
 import { z } from "zod"
 import { sendEmail, emailTemplates } from "@/lib/email"
-import { emailConfig } from "@/app/config"
+import { emailConfig } from "@/app/email-config"
 
 // Define validation schema
 const ContactFormSchema = z.object({

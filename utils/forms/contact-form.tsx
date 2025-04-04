@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import { submitContactForm, type ContactFormState } from "@/app/actions/contact-form"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react"
-import { emailConfig } from "@/app/config"
+import { emailConfig } from "@/app/email-config"
 import { useToast } from "@/components/ui/use-toast"
 import Script from "next/script"
 
