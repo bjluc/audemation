@@ -1,7 +1,0 @@
-# robots.txt for Audemation
-
-User-agent: *
-Allow: /
-
-Sitemap: https://audemation.com/sitemap.xml
-

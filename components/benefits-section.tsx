@@ -1,24 +1,89 @@
-import { Clock, BarChart, Zap, Bot, Shield } from "lucide-react"
+import { Clock, BarChart, Zap, Bot, Shield, Map, Cloud } from "lucide-react"
 
-export default function Benefits() {
+export default function BenefitsSection() {
   return (
-    <section id="benefits" className="py-16 md:py-24 relative" aria-labelledby="benefits-heading">
+    <section id="benefits" className="py-16 relative" aria-labelledby="benefits-heading">
       <div className="absolute inset-0 bg-dot-pattern opacity-10"></div>
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-10 md:mb-16">
-          <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4">
-            <span className="text-sm font-medium section-title">Benefits</span>
+          <div className="flex justify-center mb-4">
+            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+              <span className="text-sm font-medium section-title">Special Beta Offer</span>
+            </div>
           </div>
-          <h2 id="benefits-heading" className="text-3xl md:text-4xl font-bold text-gradient mb-4">
-            Why Choose Automation
+          <h2 id="benefits-heading" className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-4">
+            Start Free, Scale When Ready
           </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8">
-            Discover how our automation solutions can transform your service accommodation business and give you a
-            competitive edge in the UK market.
+          <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
+            Try our self-learning AI platform with no risk. Get full access to all features for one property during our beta period - completely free, no credit card required.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="glass-card p-6 rounded-xl hover:translate-y-[-5px] transition-transform duration-300">
+            <div className="bg-primary/10 p-3 rounded-full w-fit mb-4">
+              <Bot className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Free Beta Access</h3>
+            <p className="text-foreground/80">
+              Get complete access to our platform for one property during beta. Experience all premium features at no cost.
+            </p>
+          </div>
+
+          <div className="glass-card p-6 rounded-xl hover:translate-y-[-5px] transition-transform duration-300">
+            <div className="bg-primary/10 p-3 rounded-full w-fit mb-4">
+              <Shield className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">No Credit Card Required</h3>
+            <p className="text-foreground/80">
+              Start your free trial instantly - no credit card or payment information needed. Zero risk, zero commitment.
+            </p>
+          </div>
+
+          <div className="glass-card p-6 rounded-xl hover:translate-y-[-5px] transition-transform duration-300">
+            <div className="bg-primary/10 p-3 rounded-full w-fit mb-4">
+              <Zap className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Shape the Future</h3>
+            <p className="text-foreground/80">
+              Join our beta program to help shape the future of property automation. Your feedback directly influences our development.
+            </p>
+          </div>
+
+          <div className="glass-card p-6 rounded-xl hover:translate-y-[-5px] transition-transform duration-300">
+            <div className="bg-primary/10 p-3 rounded-full w-fit mb-4">
+              <Clock className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Quick Setup Process</h3>
+            <p className="text-foreground/80">
+              Get started in minutes with our easy-to-use platform. Simple configuration and instant deployment for your properties.
+            </p>
+          </div>
+
+          {/* Local Knowledge Feature */}
+          <div className="glass-card p-4 md:p-5 rounded-xl hover:translate-y-[-5px] transition-transform duration-300 flex flex-col items-center text-center">
+            <div className="bg-primary/10 p-3 rounded-full w-fit mb-3">
+              <Map className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Local Area Expert</h3>
+            <p className="text-sm md:text-base text-foreground/80">
+              Enhance guest experience with AI-powered local recommendations. From restaurants and museums to festivals and events, 
+              provide instant, up-to-date information about your property's neighborhood.
+            </p>
+          </div>
+
+          {/* Weather Updates Feature */}
+          <div className="glass-card p-4 md:p-5 rounded-xl hover:translate-y-[-5px] transition-transform duration-300 flex flex-col items-center text-center">
+            <div className="bg-primary/10 p-3 rounded-full w-fit mb-3">
+              <Cloud className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">Real-Time Weather</h3>
+            <p className="text-sm md:text-base text-foreground/80">
+              Keep guests informed with live weather updates and forecasts. Help them plan their stay better with accurate, 
+              location-specific weather information for your property's area.
+            </p>
+          </div>
+
           {/* Benefit 1 */}
           <div className="glass-card p-4 md:p-5 rounded-xl hover:translate-y-[-5px] transition-transform duration-300 flex flex-col items-center text-center">
             <div className="bg-primary/10 p-3 rounded-full w-fit mb-3">

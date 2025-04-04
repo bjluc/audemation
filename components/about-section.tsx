@@ -1,14 +1,16 @@
 import Image from "next/image"
 import { Bot, Zap } from "lucide-react"
 
-export default function About() {
+export default function AboutSection() {
   return (
-    <section id="about" className="py-16 md:py-24 relative" aria-labelledby="about-heading">
+    <section id="about" className="py-10 md:py-16 relative" aria-labelledby="about-heading">
       <div className="absolute inset-0 bg-dot-pattern opacity-10"></div>
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-10 md:mb-16">
-          <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4">
-            <span className="text-sm font-medium section-title">About Us</span>
+          <div className="flex justify-center mb-4">
+            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+              <span className="text-sm font-medium section-title">About Us</span>
+            </div>
           </div>
           <h2 id="about-heading" className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-4">
             Who We Are

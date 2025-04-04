@@ -9,7 +9,6 @@ import AnimatedGradientBackground from "@/components/animated-gradient-backgroun
 import FloatingShapes from "@/components/floating-shapes"
 import MobileNav from "@/components/mobile-nav"
 import SmoothScroll from "@/components/smooth-scroll"
-import Script from "next/script"
 import { Toaster } from "@/components/ui/toaster"
 import ReCaptchaProvider from "@/components/recaptcha-provider"
 import MetaPixel from "@/components/MetaPixel"
@@ -17,59 +16,15 @@ import { Button } from "@/components/ui/button"
 import PhoneNumber from "@/components/PhoneNumber"
 import { Phone, Mail } from "lucide-react"
 import Footer from "@/components/Footer"
+import { defaultMetadata, siteConfig } from "./metadata"
+import JsonLd from './components/JsonLd'
 
 const lora = Lora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 })
 
-export const metadata: Metadata = {
-  title: "Audemation - Intelligent Automation for Service Accommodation | AirbnbBot",
-  description:
-    "Audemation provides cutting-edge automation solutions for service accommodation businesses. Our flagship AirbnbBot helps hosts streamline operations, reduce costs, and enhance guest experiences with 24/7 automated communications.",
-  keywords:
-    "automation, service accommodation, AirbnbBot, Airbnb automation, property management, chatbot, AI, guest communication, hospitality technology, UK automation service",
-  authors: [{ name: "Audemation" }],
-  creator: "Audemation",
-  publisher: "Audemation",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL("https://audemation.com"),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title: "Audemation - Intelligent Automation for Service Accommodation",
-    description:
-      "Transform your service accommodation business with our cutting-edge automation solutions including AirbnbBot for seamless guest communications.",
-    url: "https://audemation.com",
-    siteName: "Audemation",
-    locale: "en_GB",
-    type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Audemation - Intelligent Automation for Service Accommodation",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Audemation - Intelligent Automation for Service Accommodation",
-    description:
-      "Transform your service accommodation business with our cutting-edge automation solutions including AirbnbBot for seamless guest communications.",
-    images: ["/og-image.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  }
-}
+export const metadata: Metadata = defaultMetadata
 
 export default function RootLayout({
   children,
@@ -78,6 +33,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        {/* Canonical URL */}
+        <link rel="canonical" href={siteConfig.url} />
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className={`${lora.className} bg-background`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <MetaPixel />
@@ -153,46 +114,7 @@ export default function RootLayout({
           </div>
           <Toaster />
         </ThemeProvider>
-
-        {/* Schema.org structured data */}
-        <Script
-          id="schema-org"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Audemation",
-              url: "https://audemation.com",
-              logo: "https://audemation.com/logo.png",
-              description:
-                "Audemation provides cutting-edge automation solutions for service accommodation businesses. Our flagship AirbnbBot helps hosts streamline operations, reduce costs, and enhance guest experiences with 24/7 automated communications.",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Woolwich House, 147 High Street",
-                addressLocality: "London",
-                postalCode: "SE18 6BY",
-                addressCountry: "GB",
-              },
-              contactPoint: {
-                "@type": "ContactPoint",
-                // Phone number is obfuscated to prevent bot scraping
-                // Format: [country code]-[area code]-[number]
-                // Each part is reversed and encoded to prevent direct scraping
-                telephone: "44-7763-572224".split("-").map(part => 
-                  part.split("").reverse().join("")
-                ).join("-"),
-                contactType: "customer service",
-                email: "info@audemation.com",
-              },
-              sameAs: [
-                "https://twitter.com/audemation",
-                "https://www.linkedin.com/company/audemation",
-                "https://www.facebook.com/audemation",
-              ],
-            }),
-          }}
-        />
+        <JsonLd />
       </body>
     </html>
   )
